@@ -11,3 +11,10 @@ suma(s(X), Y, s(Z)) :- suma(X, Y, Z).
 
 % QuickMaths! X-Y=Z -> X=Z+Y
 resta(X, Y, Z) :- suma(Y,Z,X). %suma(Z,Y,X).
+
+% producto(?X, ?Y, ?Z)
+% Es cierto cuando Z unifica con
+% el producto de X por Y
+
+producto(X,0,0).
+producto(X,s(Y),Z2) :- producto(X,Y,Z), suma(Z,X,Z2). 
