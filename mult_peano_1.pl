@@ -16,5 +16,10 @@ resta(X, Y, Z) :- suma(Y,Z,X). %suma(Z,Y,X).
 % Es cierto cuando Z unifica con
 % el producto de X por Y
 
-producto(X,0,0).
-producto(X,s(Y),Z2) :- producto(X,Y,Z), suma(Z,X,Z2). 
+producto(_,0,0).
+producto(X,s(Y),Z2) :- producto(X,Y,Z), suma(X,Z,Z2). 
+
+% P(n) <- P(n-1)
+% 4 * 3 = 4+4+4 <- 4 * 2= 4+4
+% X  s(Y)   Z2     X   Y   Z    -> Z2 = Z+X
+

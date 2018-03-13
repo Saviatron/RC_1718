@@ -1,0 +1,1 @@
+d2p(12,Z), producto(X,Y,Z), p2d(X,X2), p2d(Y,Y2).
