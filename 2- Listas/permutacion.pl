@@ -7,6 +7,12 @@
 permutacion([],[]).
 permutacion(R2,[Cabeza|Resto]):- permutacion(R, Resto), insertar(Cabeza, R, R2).
 
+% QuickMaths! - Ejemplo:permutacion(R, [1,2,3]).
+%		Ejemplo:permutacion([1,2,3], R). NO FUNCIONAAAA 
+
+% permutacion2([],[]).
+% permutation2(R, L):- append(L1,[E|L2], L), append(L1, L2, L3), permutation2(L4,L3), insertar(E,L4,R).
+
 
 % insertar(E, Lista, R).
 % Es cierto cuando R unifica con una lista
