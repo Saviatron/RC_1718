@@ -5,6 +5,12 @@
 % de menor a mayor.
 %-----------------------------------------------------
 
+ordena_burbuja(Lista,Lista) :- ordenada(Lista).
+ordena_burbuja(Lista, R2) :- 
+	append(L1, [E1, E2|Resto], Lista), 
+	E1 > E2,
+	append(L1, [E2, E1|Resto], R), 
+	ordena_burbuja(R,R2).
 
 %-----------------------------------------------------
 % ordenada(+Lista)
@@ -13,6 +19,6 @@
 % mayor.
 %-----------------------------------------------------
 
-ordena([]).
-ordena([_]).
-ordena([Cabeza, Cabeza2|Resto]) :- Cabeza =< Cabeza2, ordena([Cabeza2 | Resto]).
+ordenda([]).
+ordenada([_]).
+ordenada([Cabeza, Cabeza2|Resto]) :- Cabeza =< Cabeza2, ordenada([Cabeza2 | Resto]).
