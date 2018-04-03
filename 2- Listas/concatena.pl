@@ -10,7 +10,7 @@
 % 2) P(n-1) -> P(n) % P(n) -> P(n+1).
 
 concatena([], L2, L2).
-concatena([cabeza|resto], L2, [cabeza| R]) :- concatena(resto, L2, R).
+concatena([Cabeza|Resto], L2, [Cabeza| R]) :- concatena(Resto, L2, R).
 
 
 % concatena(List1, [cabeza | resto], ) :- concatena(List1, resto, R).
