@@ -11,9 +11,9 @@
 
 divide(_,[],[],[]).
 divide(E, [Cabeza|Resto], [Cabeza|Menores], Mayores) :- 
-	E =< Cabeza, divide(E, Resto, Menores, Mayores).
-divide(E, [Cabeza|Resto], Menores, [Cabeza|Mayores]) :- 
 	E > Cabeza, divide(E, Resto, Menores, Mayores).
+divide(E, [Cabeza|Resto], Menores, [Cabeza|Mayores]) :- 
+	E =< Cabeza, divide(E, Resto, Menores, Mayores).
 
 %---------------------------------------------------
 %
@@ -30,4 +30,9 @@ ordena_quick([Cabeza|Resto], R):-
 	divide(Cabeza, Resto, Menores, Mayores),
 	ordena_quick(Menores, MenoresOrd),
 	ordena_quick(Mayores, MayoresOrd),
-	append(MayoresOrd, [Cabeza|MenoresOrd], R).
+	append(MenoresOrd, [Cabeza|MayoresOrd], R).
+
+% Quick-Maths!!!
+% time(ordena_burbuja([1,3,2,6,5,8,9,4],Ordenada)). -> 226 inferences
+% time(ordena_insercion([1,3,2,6,5,8,9,4],Ordenada)). -> 41 inferences
+% time(ordena_quick([1,3,2,6,5,8,9,4],Ordenada)). -> 78 inferences
