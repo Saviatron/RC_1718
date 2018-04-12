@@ -1,9 +1,13 @@
-
-%masveces(+L, -E, -N).
-% es cierto cuando E unifica con el elemento
-% que mas veces se repite en L y N con el 
-% numero de veces que se repite
+%--------------------------------------------------
 %
+% masveces(+L, -E, -N).
+%
+%	es cierto cuando E unifica con el elemento
+%	que mas veces se repite en L y N con el 
+%	numero de veces que se repite
+%
+%----------------------------------------------------
+
 
 masveces(L, E, N):-
 	msort(L,R),
@@ -108,4 +112,6 @@ ordena_quick([(Valor,E)|Resto], R):-
 	ordena_quick(Mayores, MayoresOrd),
 	append(MenoresOrd, [(Valor,E)|MayoresOrd], R).
 
-%masveces([a,a,a,b,b,a,c]
+% masveces([a,a,a,b,b,a,b,b,b,b,c],E,R).
+% E = b,
+% R = 6 .
