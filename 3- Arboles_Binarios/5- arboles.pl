@@ -70,3 +70,18 @@ cuenta_internos(A, R) :-
 	R is NumNodos - NumHojas.
 
 % No hay caso base, porque no hay recursividad, solo usamos otros predicados que si tienen caso base
+
+% suma_nodos(+A, -R)
+% Es cierto cuando R unifica con la suma
+% de todas las etiquetas del arbol A
+
+suma_nodos(nil, 0).
+
+suma_nodos(a(E, HI, HD), R) :-
+	suma_nodos(HI, RI),
+	suma_nodos(HD, RD),
+	R is E + RI + RD.
+
+arbol3(
+	a(1, a(4, a(5, nil, nil), nil), a(2, nil, nil))
+	).
