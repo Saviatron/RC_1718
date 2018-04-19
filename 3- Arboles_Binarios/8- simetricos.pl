@@ -31,6 +31,19 @@ invertir(a(E,HI,HD), a(E,RD,RI)) :-
 	invertir(HI, RI),
 	invertir(HD, RD).
 
+%QUICKMATHS!
+% ?- arbol3(A), simetrico(A).
+% A = a(1, a(2, a(3, nil, nil), nil), a(2, nil, a(3, nil, nil))).
+
+% ?- arbol2(A), simetrico(A).
+% false.
+
+% ?- arbol4(A1), arbol5(A2), simetricos(A1,A2).
+% A1 = a(1, a(2, a(3, nil, nil), nil), nil),
+% A2 = a(1, nil, a(2, nil, a(3, nil, nil))).
+
+% ?- arbol4(A1), arbol3(A2), simetricos(A1,A2).
+% false.
 
 arbol1(
 	a(a, a(b, a(c, nil, nil), nil), a(d, nil, nil))
@@ -40,4 +53,12 @@ arbol2(a(a,a(b,a(d,nil,nil),a(e,nil,nil)),a(c,nil,a(f,a(g,nil,nil),nil)))).
 
 arbol3(
 	a(1, a(2, a(3, nil, nil), nil), a(2, nil, a(3, nil, nil)))
+	).
+
+arbol4(
+	a(1, a(2, a(3, nil, nil), nil), nil)
+	).
+
+arbol5(
+	a(1, nil, a(2, nil, a(3, nil, nil)))
 	).
