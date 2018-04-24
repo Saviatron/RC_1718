@@ -27,3 +27,16 @@ altura(a(_,HI,HD), R2) :-
 	altura(HD,RD),
 	R is max(RI,RD),
 	R2 is R + 1.
+
+
+arbol1(
+      a(1, a(2,a(4,nil,nil),nil), nil)
+      ).
+
+arbol2(
+      a(a, a(b,a(d,nil,nil),nil), a(c,nil,nil))
+      ).
+
+arbol3(
+      a(a, a(b,a(d,nil,nil),nil), a(c,nil,a(e,nil,nil)))
+      ). 
