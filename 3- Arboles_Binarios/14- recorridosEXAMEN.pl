@@ -41,6 +41,7 @@ postorden(a(E,HI,HD), R):-
 % por eso no necesito caso base.
 anchura(a(E,Lista_hijos), [E|R]) :-
 	anchura(Lista_hijos, R).
+
 % Aqui si hay recursividad, si necesitamos caso base.
 anchura([], []).
 anchura([a(E, L)|Resto], [E|R2]) :-
@@ -70,7 +71,7 @@ arbol1(
 	).
 
 arbol2(
-	a('+', a('-', a('4', nil, nil), a('5', nil, nil)), a('*', a('2', nil, nil), a('3', nil, nil)))
+	a('+', a('/', a('5', nil, nil), a('6', nil, nil)), a('*', a('2', nil, nil), a('3', nil, nil)))
 	).
 
 %QUICKMATHS!
@@ -85,3 +86,8 @@ arbol2(
 %?- arbol1(A), postorden(A,R).
 %A = a(+, a('1', nil, nil), a(*, a('2', nil, nil), a('3', nil, nil))),
 %R = ['1', '2', '3', *, +].
+
+%?- arbol2(A), bin2gen(A, R), anchura(R,R2).
+%A = a(+, a(/, a('5', nil, nil), a('6', nil, nil)), a(*, a('2', nil, nil), a('3', nil, nil))),
+%R = a(+, [a(/, [a('5', []), a('6', [])]), a(*, [a('2', []), a('3', [])])]),
+%R2 = [+, /, *, '5', '6', '2', '3'] 
