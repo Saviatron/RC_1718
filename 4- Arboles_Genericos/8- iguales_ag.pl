@@ -5,10 +5,15 @@
 
 iguales(A,A).
 
-% simetricos(+A, +B)
+% simetricos_ag(+A, +B)
 % Es cierto si A y B son dos arboles simetricos
 
 simetricos_ag(A, B):- invertir_ag(A,B).
+
+% simetrico_ag(+A)
+% Es cierto si A es simetrico
+
+simetrico_ag(A):- invertir_ag(A,A).
 
 % invertir_ag(+A, -R)
 % Es cierto cuando R unifica con el arbol A invertido
