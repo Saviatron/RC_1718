@@ -1,0 +1,91 @@
+% Problema de los caníbales y misioneros
+
+% 1- Definición del estado.
+%	estado(Num_mi_izq, Num_ca_izq, Pos_Barca)
+
+% 1.1- Definición del estado inicial.
+%	estado(3, 3, izq)
+
+% 1.2- Definición del estado final.
+%	estado(0, 0, _)
+
+% 2- Definición de los movimientos.
+%	mov(Nombre, Estado_anterior, Estado_posterior)
+
+%mov(un_misionero_izq, estado(Mi_izq, Ca_izq, dcha), 
+%                      estado(Mi_izq_2, Ca_izq, izq)):-
+%	Mi_izq < 3, Mi_izq_2 is Mi_izq + 1.
+
+%mov(un_misionero_der, estado(Mi_izq, Ca_izq, izq), 
+%                      estado(Mi_izq_2, Ca_izq, dcha)):-
+%	Mi_izq > 0, Mi_izq_2 is Mi_izq - 1.
+
+pasar(1,0,izq).
+pasar(1,0,dch).
+pasar(0,1,izq).
+pasar(0,1,dch).
+pasar(2,0,izq).
+pasar(2,0,dch).
+pasar(0,2,izq).
+pasar(0,2,dch).
+pasar(1,1,izq).
+pasar(1,1,dch).
+
+valido(estado(3,3,_)).
+valido(estado(3,2,_)).
+valido(estado(3,1,_)).
+valido(estado(3,0,_)).
+valido(estado(2,2,_)).
+valido(estado(2,1,_)).
+valido(estado(2,0,_)).
+valido(estado(1,1,_)).
+valido(estado(1,0,_)).
+valido(estado(0,0,_)).
+valido(estado(0,1,_)).
+valido(estado(0,2,_)).
+valido(estado(0,3,_)).
+
+mov(pasar(M, C, dch), estado(MI, CI, izq), estado(MI2, CI2, dch)):-
+	pasar(M,C,dch),
+	NT is M + C, NT =< 2, NT >= 1,
+	M =< MI, C =< CI,
+	MI2 is MI - M, CI2 is CI - C,
+	MI2 >= CI2, MI2 =< 3, CI2 =< 3,
+	valido(estado(MI2, CI2, _)).
+
+mov(pasar(M, C, izq), estado(MI,CI, dch), estado(MI2, CI2, izq)):-
+	pasar(M,C,izq),
+	NT is M + C, NT =< 2, NT >= 1,
+	M =< MI, C =< CI,
+	MI2 is MI + M, CI2 is CI + C,
+	MI2 >= CI2, MI2 =< 3, CI2 =< 3,
+	valido(estado(MI2, CI2, _)).
+
+
+% camino(+Estado_inicial, +Estado_final, +Visitados, -Camino)
+% es cierto cuando Estado_inicial y Estado_final unifican con estados 
+% válido, Visitados unifica con una lista de estados visitados. 
+
+%camino(Inicio, Inicio, _, []).
+camino(Inicio, Inicio, _, [], [Inicio]).
+
+%camino(Inicio, Fin, Visitados, [Mov|Camino]):-
+%	length(Visitados, L), L < 10,
+%	mov(Mov, Inicio, Int),
+%	\+ member(Int, Visitados),
+%	camino(Int, Fin, [Int|Visitados], Camino).
+
+camino(Inicio, Fin, Visitados, [Mov|Camino], [Inicio|CaminoE]):-
+	length(Visitados, L), L < 9,
+	mov(Mov, Inicio, Int),
+	\+ member(Int, Visitados),
+	camino(Int, Fin, [Int|Visitados], Camino, CaminoE).
+
+
+
+
+
+
+
+
+
