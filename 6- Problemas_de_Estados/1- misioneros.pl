@@ -36,10 +36,10 @@ valido(estado(3,2,_)).
 valido(estado(3,1,_)).
 valido(estado(3,0,_)).
 valido(estado(2,2,_)).
-valido(estado(2,1,_)).
-valido(estado(2,0,_)).
+% valido(estado(2,1,_)).
+% valido(estado(2,0,_)).
 valido(estado(1,1,_)).
-valido(estado(1,0,_)).
+% valido(estado(1,0,_)).
 valido(estado(0,0,_)).
 valido(estado(0,1,_)).
 valido(estado(0,2,_)).
@@ -47,18 +47,21 @@ valido(estado(0,3,_)).
 
 mov(pasar(M, C, dch), estado(MI, CI, izq), estado(MI2, CI2, dch)):-
 	pasar(M,C,dch),
-	NT is M + C, NT =< 2, NT >= 1,
-	M =< MI, C =< CI,
-	MI2 is MI - M, CI2 is CI - C,
-	MI2 >= CI2, MI2 =< 3, CI2 =< 3,
+	% NT is M + C, NT =< 2, NT >= 1,
+	M =< MI, C =< CI, % no pasar mas de los que hay a la izq
+	MI2 is MI - M, CI2 is CI - C, % lo que queda a la izquiera despues de pasar
+	% MI2 >= CI2, 
+	MI2 =< 3, CI2 =< 3,
 	valido(estado(MI2, CI2, _)).
 
 mov(pasar(M, C, izq), estado(MI,CI, dch), estado(MI2, CI2, izq)):-
 	pasar(M,C,izq),
-	NT is M + C, NT =< 2, NT >= 1,
-	M =< MI, C =< CI,
-	MI2 is MI + M, CI2 is CI + C,
-	MI2 >= CI2, MI2 =< 3, CI2 =< 3,
+	% NT is M + C, NT =< 2, NT >= 1,
+	MD is 3 - MI, CD is 3 - CI,
+	M =< MD, C =< CD, % no pasar mas de los que hay a la dcha
+	MI2 is MI + M, CI2 is CI + C, % lo que queda a la izquiera despues de pasar
+	% MI2 >= CI2, 
+	MI2 =< 3, CI2 =< 3,
 	valido(estado(MI2, CI2, _)).
 
 
@@ -76,7 +79,7 @@ camino(Inicio, Inicio, _, [], [Inicio]).
 %	camino(Int, Fin, [Int|Visitados], Camino).
 
 camino(Inicio, Fin, Visitados, [Mov|Camino], [Inicio|CaminoE]):-
-	length(Visitados, L), L < 9,
+	length(Visitados, L), L < 12,
 	mov(Mov, Inicio, Int),
 	\+ member(Int, Visitados),
 	camino(Int, Fin, [Int|Visitados], Camino, CaminoE).
