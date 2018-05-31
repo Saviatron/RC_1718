@@ -79,7 +79,7 @@ camino(Inicio, Inicio, _, [], [Inicio]).
 %	camino(Int, Fin, [Int|Visitados], Camino).
 
 camino(Inicio, Fin, Visitados, [Mov|Camino], [Inicio|CaminoE]):-
-	length(Visitados, L), L < 12,
+	length(Visitados, L), % L < 12,
 	mov(Mov, Inicio, Int),
 	\+ member(Int, Visitados),
 	camino(Int, Fin, [Int|Visitados], Camino, CaminoE).
